@@ -288,26 +288,27 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 
 			table.insert(obj, Circle)
 		end
-
-		spawn(function()
-			for _ = 1,5 do wait(0.7)
-				local el = table.remove(obj)
-				table.insert(obj, 1, el)
-				for i, v in pairs(obj) do
-					if i == 1 then
-						v:TweenSize(UDim2.new(0,12,0,12),"Out","Linear",0.15,true)
-					elseif i == 4 then
-						v:TweenSize(UDim2.new(0,0,0,0),"Out","Linear",0.15,true)
-						wait(0.15)
-						v:TweenPosition(UDim2.new(0,0,0.5,0),"Out","Quad",0)
-					end
-					v:TweenPosition(UDim2.new(0,i * 13,0.5,0),"Out","Quad",0.35)
-					if _ == 5 then
-						TweenService:Create(FadeBackgroundFrame,TweenInfo.new(0.3),{BackgroundTransparency = 1}):Play()
-						TweenService:Create(v,TweenInfo.new(0.3),{BackgroundTransparency = 1}):Play()
+                pcall(function()
+			spawn(function()
+				for _ = 1,5 do wait(0.7)
+					local el = table.remove(obj)
+					table.insert(obj, 1, el)
+					for i, v in pairs(obj) do
+						if i == 1 then
+							v:TweenSize(UDim2.new(0,12,0,12),"Out","Linear",0.15,true)
+						elseif i == 4 then
+							v:TweenSize(UDim2.new(0,0,0,0),"Out","Linear",0.15,true)
+							wait(0.15)
+							v:TweenPosition(UDim2.new(0,0,0.5,0),"Out","Quad",0)
+						end
+						v:TweenPosition(UDim2.new(0,i * 13,0.5,0),"Out","Quad",0.35)
+						if _ == 5 then
+							TweenService:Create(FadeBackgroundFrame,TweenInfo.new(0.3),{BackgroundTransparency = 1}):Play()
+							TweenService:Create(v,TweenInfo.new(0.3),{BackgroundTransparency = 1}):Play()
+						end
 					end
 				end
-			end
+			end)
 		end)
 	end
 	
@@ -964,7 +965,7 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 			end
 
 
-			function InSection:NewDropdown(placeholder,Selectables,func,IsMulti)
+			function InSection:NewDropdown(placeholder,Selectables,IsMulti,func)
 				local Dropdown = Instance.new("TextButton")
 				local Frame = Instance.new("Frame")
 				local DropdownCorner = Instance.new("UICorner")
