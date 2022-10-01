@@ -311,7 +311,7 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 		end)
 	end
 	
-	function Tabs:Nofitication(Text)
+	function Tabs:Notification(Text)
 
 
 		local Nofitication = Instance.new("Frame")
