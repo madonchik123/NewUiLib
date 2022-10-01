@@ -965,7 +965,7 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 			end
 
 
-			function InSection:NewDropdown(placeholder,Selectables,IsMulti,func)
+			function InSection:NewDropdown(placeholder,Selectables,func,isMulti)
 				local Dropdown = Instance.new("TextButton")
 				local Frame = Instance.new("Frame")
 				local DropdownCorner = Instance.new("UICorner")
@@ -1280,9 +1280,9 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 
 				for _,str in next,Selectables do
 					if not IsMulti then
-						NewSelectable(tostring(_),str)
+					NewSelectable(tostring(_),str)
 					else
-						NewSelectable(tostring(_))
+					NewSelectable(tostring(_))
 					end
 				end
 
@@ -1302,7 +1302,7 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 				return Drop;
 			end
 			
-	function InSection:NewTextBox(placeholder, callback)
+			function InSection:NewTextBox(placeholder, callback)
  				local TextBox = Instance.new("TextBox")
 				local UICorner = Instance.new("UICorner")
 				local BoxStroke = Instance.new("UIStroke")
