@@ -175,16 +175,18 @@ function UILibrary:Main(PrjName,HideKey,GameName)
 	InputService.InputBegan:Connect(function(Input,IsTyping)
 		if Input.KeyCode == Enum.KeyCode[HideKey] and not IsTyping then
 			IsMenuOpened = not IsMenuOpened
-			if IsMenuOpened then
-				LastPos = Main.Position
-				wait()
-				Main:TweenPosition(UDim2.new(0.25,0,-1.5,0),"In","Quint",0.5,true)
-				TweenService:Create(HideMain,TweenInfo.new(0.15),{BackgroundTransparency = 0}):Play()
-			else
-				Main:TweenPosition(LastPos,"Out","Quint",0.5,true)
-				wait(0.25)
-				TweenService:Create(HideMain,TweenInfo.new(0.15),{BackgroundTransparency = 1}):Play()
-			end
+			pcall(function()
+				if IsMenuOpened then
+					LastPos = Main.Position
+					wait()
+					Main:TweenPosition(UDim2.new(0.25,0,-1.5,0),"In","Quint",0.5,true)
+					TweenService:Create(HideMain,TweenInfo.new(0.15),{BackgroundTransparency = 0}):Play()
+				else
+					Main:TweenPosition(LastPos,"Out","Quint",0.5,true)
+					wait(0.25)
+					TweenService:Create(HideMain,TweenInfo.new(0.15),{BackgroundTransparency = 1}):Play()
+				end
+			end)			
 		end
 	end)
 
